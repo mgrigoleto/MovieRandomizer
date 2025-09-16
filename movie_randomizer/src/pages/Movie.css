@@ -1,0 +1,50 @@
+.movie-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 50px;
+}
+
+.movie-page #container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    color: white;
+    text-align: center;   
+    gap: 50px;
+    width: 100%;
+}
+
+#container #poster {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#poster img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+#container #details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 70%;
+    height: 100%;
+    align-items: flex-start;
+    text-align: left;
+}
+
+#details #rating {
+    color: gold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#details p {
+    font-size: 18px;
+}
