@@ -5,7 +5,6 @@ import { OrbitProgress } from "react-loading-indicators"
 
 import "./MovieGrid.css"
 
-const searchURL = import.meta.env.VITE_SEARCH
 const apiKey = import.meta.env.VITE_API_KEY
 
 const Search = () => {

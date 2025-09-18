@@ -14,38 +14,3 @@
     align-items: center;
     gap: 0.5rem;
 }
-
-#navbar form {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-#navbar input {
-    padding: 0.2rem 0.8rem;
-    border-radius: 5px;
-    border: none;
-    font-family: inherit;
-    height: 35px;
-    width: 250px;
-}
-
-#navbar button {
-    font-size: 15px;
-    width: 35px;
-    height: 35px;
-    border-radius: 5px;
-    border: 2px solid #0059ff;
-    background-color: #0059ff;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s ease-in-out;
-}
-
-#navbar button:hover {
-    background-color: #003aa7;
-    border: 2px solid #003aa7;
-}

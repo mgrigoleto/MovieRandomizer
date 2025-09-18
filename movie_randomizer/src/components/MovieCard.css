@@ -1,43 +1,70 @@
 .movie-card {
-    border-radius: 5px;
-    padding: 10px;
-    width: 350px;
-    background: #010918;
+    width: 100%;
+    height: 200px;
     color: white;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
-    gap: 10px;
+    background-color: #010918;
 }
 
 .movie-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
+    height: 100%;
+    width: auto;
 }
 
-.movie-card .rating {
-    color: #FFD700;
-    font-size: 17px;
+.movie-card .movie-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2px;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.movie-details .rating {
+    font-size: 14px;
     display: flex;
     align-items: center;
-    gap: 5px;
+    justify-content: center;
+    gap: 3px;
 }
 
-.movie-card a {
-    padding: 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #0059FF;
-    color: white;
-    cursor: pointer;
-    font-size: 1em;
-    transition: 0.3s ease-in-out;
-    text-align: center;
-    width: 100%;
-    font-weight: bold;
+.terrible{
+    color: #ff0000;
 }
 
-.movie-card a:hover {
-    background-color: #003aa7;
+.bad{
+    color: #fd401f;
+}
+
+.average{
+    color: #ffee00;
+}
+
+.good{
+    color: #b9f70f;
+}
+
+.excellent{
+    color: #00ff00;
+}
+
+.movie-card .genres {
+    font-size: 14px;
+    color: #cccccc;
+    font-style: italic;
+}
+
+.movie-card .overview {
+    font-size: 16px;
+    margin-top: 7px;
+    color: #dddddd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    -webkit-box-orient: vertical;
 }
