@@ -13,4 +13,45 @@ body {
 a {
     text-decoration: none;
     color: inherit;
+    transition: 0.3s ease-in-out;
+}
+
+.terrible {
+    color: #ff0000;
+}
+
+.bad {
+    color: #fd401f;
+}
+
+.average {
+    color: #ffee00;
+}
+
+.good {
+    color: #b9f70f;
+}
+
+.excellent {
+    color: #00ff00;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: inherit;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #011d52;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #021331;
 }

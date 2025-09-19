@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px 20%;
+    padding: 25px 20%;
 }
 
 .container .movies-container {
@@ -16,7 +16,7 @@
 }
 
 #search-navbar {
-    background-color: #010918;
+    background-color: #021331;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -40,7 +40,7 @@
     height: 35px;
     width: 250px;
     color: white;
-    background-color: #021331;
+    background-color: #010918;
 }
 
 #search-navbar input::placeholder {
@@ -75,20 +75,20 @@
 #sort-options .sort-label {
     padding: 10px 15px;
     font-family: inherit;
-    border-bottom: 2px solid #010918;
+    border-bottom: 2px solid #021331;
     font-size: 16px;
     transition: 0.3s ease-in-out;
 }
 
 #sort-options .sort-label:hover {
     border-bottom: 2px solid #0059ff;
-    background-color: #021331;
+    background-color: #001842;
     cursor: pointer;
 }
 
 .selected-label {
     border-bottom: 2px solid #0059ff !important;
-    background-color: #021331;
+    background-color: #001842;
 }
 
 #sort-options .sort-input {
