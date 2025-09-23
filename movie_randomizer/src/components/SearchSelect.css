@@ -1,0 +1,45 @@
+.search-select {
+    position: relative;
+    width: 100%;
+}
+
+.search-select input {
+    padding: 5px 10px;
+    border: none;
+    font-family: inherit;
+    font-size: 14px;
+    height: 40px;
+    width: 100%;
+    color: white;
+    background-color: #010918;
+}
+
+.search-select ul.options {
+    font-size: 14px;
+    user-select: none;
+    color: white;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #010918;
+    border: 1px solid #011d52;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    z-index: 100;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.search-select ul.options li {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out
+}
+
+.search-select ul.options li:hover {
+    background: #021331
+}

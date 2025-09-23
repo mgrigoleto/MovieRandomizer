@@ -1,34 +1,29 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { FaStar } from "react-icons/fa"
+import { imageUrl } from "../api/movies"
 
 import "./Movie.css"
-
-const moviesURL = import.meta.env.VITE_API
-const apiKey = import.meta.env.VITE_API_KEY
-const imageUrl = import.meta.env.VITE_IMG
+import { fetchMovieById } from "../api/movies"
 
 const Movie = () => {
     const { id } = useParams()
     const [movie, setMovie] = useState(null)
 
-    const getMovie = async (url) => {
-        const res = await fetch(url)
-        const data = await res.json()
-        console.log(data)
-        setMovie(data)
-    }
-
     useEffect(() => {
-        const movieUrl = `${moviesURL}${id}?${apiKey}`
-        getMovie(movieUrl)
+        try {
+            fetchMovieById(id).then(data => setMovie(data))
+        } catch (err) { 
+            console.error(err)
+        }
     }, [])
 
     return (
         <div className="movie-page">
             {movie &&
                 <>
-                    <div id="container">
+                    <h1>Work in progress...</h1>
+                    <div className="container">
                         <div id="poster">
                             <h2 id="title">{movie.title}</h2>
                             <img src={`${imageUrl}${movie.poster_path}`} alt={movie.title} />
@@ -54,14 +49,14 @@ const Movie = () => {
                             </div>
                             <div>
                                 <h3>Budget</h3>
-                                <p>${movie.budget.toLocaleString(undefined, {
+                                <p>$ {movie.budget.toLocaleString(undefined, {
                                     minimumFractionDigits: 2,
                                     maximumFractionDigits: 2,
                                 })}</p>
                             </div>
                             <div>
                                 <h3>Revenue</h3>
-                                <p>${movie.revenue.toLocaleString(undefined, {
+                                <p>$ {movie.revenue.toLocaleString(undefined, {
                                     minimumFractionDigits: 2,
                                     maximumFractionDigits: 2,
                                 })}</p>

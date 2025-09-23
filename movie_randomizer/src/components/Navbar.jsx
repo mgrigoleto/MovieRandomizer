@@ -1,33 +1,21 @@
-import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { Link } from "react-router-dom"
 
 import { BiSolidMoviePlay } from "react-icons/bi"
-import { FaSearch } from "react-icons/fa"
 
 import "./Navbar.css"
 
 const Navbar = () => {
-    const [search, setSearch] = useState("")
-    const navigate = useNavigate()
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        if (!search) return
-        navigate(`/search?q=${search}`)
-    }
-
     return (
         <div>
             <nav id="navbar">
                 <h2>
-                    <Link to="/"><BiSolidMoviePlay /> Movie Randomizer</Link>
+                    <Link to="/"><BiSolidMoviePlay /> NextMovie</Link>
                 </h2>
-                <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)} value={search} />
-                    <button type="submit">
-                        <FaSearch />
-                    </button>
-                </form>
+                <nav id="games-nav">
+                    <h3>
+                        <Link to="/pixelgame">Pixel Game</Link>
+                    </h3>
+                </nav>
             </nav>
         </div>
     )

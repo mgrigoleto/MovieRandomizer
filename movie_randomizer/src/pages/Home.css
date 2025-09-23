@@ -1,0 +1,89 @@
+.movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+#search-navbar {
+    background-color: #021331;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    width: 100%;
+    margin-bottom: 15px;
+    height: 40px;
+}
+
+#search-navbar form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#search-navbar input {
+    padding: 5px 10px;
+    border: none;
+    font-family: inherit;
+    font-size: 14px;
+    height: 35px;
+    width: 250px;
+    color: white;
+    background-color: #010918;
+}
+
+#search-navbar input::placeholder {
+    color: white;
+}
+
+#search-navbar button {
+    font-size: 15px;
+    width: 35px;
+    height: 35px;
+    border: 2px solid #0059ff;
+    background-color: #0059ff;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease-in-out;
+}
+
+#search-navbar button:hover {
+    background-color: #003aa7;
+    border: 2px solid #003aa7;
+}
+
+#search-navbar #sort-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sort-options .sort-label {
+    padding: 10px 15px;
+    font-family: inherit;
+    border-bottom: 2px solid #021331;
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+}
+
+#sort-options .sort-label:hover {
+    border-bottom: 2px solid #0059ff;
+    background-color: #001842;
+    cursor: pointer;
+}
+
+.selected-label {
+    border-bottom: 2px solid #0059ff !important;
+    background-color: #001842;
+}
+
+#sort-options .sort-input {
+    display: none;
+}
