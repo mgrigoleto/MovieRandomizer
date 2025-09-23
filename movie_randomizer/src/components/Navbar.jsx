@@ -11,6 +11,11 @@ const Navbar = () => {
                 <h2>
                     <Link to="/"><BiSolidMoviePlay /> NextMovie</Link>
                 </h2>
+                <nav id="games-nav">
+                    <h3>
+                        <Link to="/pixelgame">Pixel Game</Link>
+                    </h3>
+                </nav>
             </nav>
         </div>
     )

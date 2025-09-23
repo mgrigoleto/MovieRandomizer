@@ -13,7 +13,13 @@ body {
 a {
     text-decoration: none;
     color: inherit;
-    transition: 0.3s ease-in-out;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 20%;
 }
 
 .terrible {

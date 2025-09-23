@@ -4,13 +4,10 @@ import { useState } from "react"
 import { FaPlus, FaMinus } from "react-icons/fa"
 import { OrbitProgress } from "react-loading-indicators"
 import { getGradeColor } from "../utils/getGradeColor"
-
-const moviesURL = import.meta.env.VITE_API
-const apiKey = import.meta.env.VITE_API_KEY
+import { fetchSimilarMovies } from "../api/movies"
+import { imageUrl } from "../api/movies"
 
 import "./MovieCard.css"
-
-const imageUrl = import.meta.env.VITE_IMG
 
 const MovieCard = ({ movie, genres = [], child = false }) => {
     const [similarMovies, setSimilarMovies] = useState([])
@@ -24,18 +21,19 @@ const MovieCard = ({ movie, genres = [], child = false }) => {
         }
 
         setLoading(true)
-        await fetchSimiliarMovies(id)
+        await fetchMovies(id)
         setLoading(false)
     }
 
-    const fetchSimiliarMovies = async (id) => {
-        const url = `${moviesURL}${id}/similar?${apiKey}&page=${page}`
-        const res = await fetch(url)
-        const data = await res.json()
-        const currentMovies = [...similarMovies]
-        const newMovieArray = [...currentMovies, ...data.results]
-        setSimilarMovies(newMovieArray)
-        setPage(page + 1)
+
+    const fetchMovies = async (id) => {
+        try {
+            const newMovies = await fetchSimilarMovies(id, page)
+            setSimilarMovies((prev) => [...prev, ...newMovies])
+            setPage((prev) => prev + 1)
+        } catch (err) {
+            console.error(err)
+        }
     }
 
     return (
@@ -61,7 +59,7 @@ const MovieCard = ({ movie, genres = [], child = false }) => {
                 {similarMovies.map(similarMovie => (
                     <MovieCard key={similarMovie.id} movie={similarMovie} genres={genres} child={true} />
                 ))}
-                <div id="load-more-section"><button className="load-more-button" onClick={() => fetchSimiliarMovies(movie.id)}>More</button></div>
+                <div id="load-more-section"><button className="load-more-button" onClick={async () => await fetchMovies(movie.id)}>More</button></div>
             </div>}
             {loading && <OrbitProgress size="large" color="#0059FF" />}
         </div>

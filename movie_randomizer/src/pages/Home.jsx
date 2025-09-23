@@ -4,12 +4,8 @@ import { OrbitProgress } from "react-loading-indicators"
 
 import { FaSearch } from "react-icons/fa"
 
-import "./MovieGrid.css"
-
-const moviesURL = import.meta.env.VITE_API
-const apiKey = import.meta.env.VITE_API_KEY
-const genresURL = import.meta.env.VITE_GENRES
-const searchURL = import.meta.env.VITE_SEARCH
+import "./Home.css"
+import { fetchGenres, fetchMoviesBySort, fetchSearchedMovies } from "../api/movies"
 
 const Home = () => {
     const [movies, setMovies] = useState([])
@@ -17,39 +13,31 @@ const Home = () => {
     const [sortBy, setSortBy] = useState("popular")
     const [search, setSearch] = useState("")
 
-    const getMovies = async (url) => {
-        const res = await fetch(url)
-        const data = await res.json()
-        setMovies(data.results)
-    }
-
-    const getGenres = async (url) => {
-        const res = await fetch(url)
-        const data = await res.json()
-        setGenres(data.genres)
-    }
-
     const handleSubmit = (e) => {
         e.preventDefault()
         if (!search) return
-        getSearchedMovies(`${searchURL}?${apiKey}&query=${search}`)
-    }
-
-    const getSearchedMovies = async (url) => {
-        const res = await fetch(url)
-        const data = await res.json()
-        setMovies(data.results)
+        try {
+            fetchSearchedMovies(search).then(data => setMovies(data))
+        } catch (err) {
+            console.error(err)
+        }
     }
 
     useEffect(() => {
         setMovies([])
-        const moviesUrl = `${moviesURL}${sortBy}?${apiKey}`
-        getMovies(moviesUrl)
+        try {
+            fetchMoviesBySort(sortBy).then(data => setMovies(data))
+        } catch (err) {
+            console.error(err)
+        }
     }, [sortBy])
 
     useEffect(() => {
-        const genresUrl = `${genresURL}?${apiKey}`
-        getGenres(genresUrl)
+        try {
+            fetchGenres().then(data => setGenres(data))
+        } catch (err) {
+            console.error(err)
+        }
     }, [])
 
     return (
