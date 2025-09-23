@@ -4,6 +4,7 @@ import { OrbitProgress } from "react-loading-indicators"
 import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
 import PixelGameTip from "../components/PixelGameTip";
 import { FaSquare } from "react-icons/fa";
+import { animateScroll as scroll } from "react-scroll"
 
 import "./PixelGame.css"
 import SearchSelect from "../components/SearchSelect";
@@ -20,6 +21,7 @@ const PixelGame = () => {
     const [posterUrl, setPosterUrl] = useState('/pixel-game-template.png')
 
     const timerRef = useRef(null);
+    const buttonRef = useRef(null);
 
     useEffect(() => {
         try {
@@ -63,10 +65,20 @@ const PixelGame = () => {
             fetchRandomMovieList(genres).then(data => {
                 if (data.length > 0) {
                     try {
-                        fetchMovieById(data[Math.floor(Math.random() * data.length)].id).then(movie => {
+                        fetchMovieById(
+                            data[Math.floor(Math.random() * data.length)].id
+                        ).then(movie => {
                             console.log(movie)
                             setMovie(movie)
                             setPosterUrl(`${imageUrl}${movie.poster_path}`)
+
+                            // Scroll the screen to show the game
+                            if (buttonRef.current) {
+                                scroll.scrollTo(buttonRef.current.offsetTop, {
+                                    duration: 1000,
+                                    smooth: "easeInOutQuart"
+                                })
+                            }
                         })
                     } catch (err) {
                         console.log(err)
@@ -160,7 +172,7 @@ const PixelGame = () => {
                     </div>
                 ))}
             </div>
-            <button id="start-pixel-game-button" onClick={async () => await startGame()}>Start Game</button>
+            <button ref={buttonRef} id="start-pixel-game-button" onClick={async () => await startGame()}>Start Game</button>
             {movie && (
                 <div id="pixel-game-container">
                     <div id="movie-poster-container">
@@ -168,7 +180,7 @@ const PixelGame = () => {
                             <img
                                 src={posterUrl}
                                 className="blured-img"
-                                style={{ filter: wonGame == true ? 'none' : `blur(${Math.max(0, 25 - 2.7 * guessesAmount)}px)`}}
+                                style={{ filter: wonGame == true ? 'none' : `blur(${Math.max(0, 25 - 2.7 * guessesAmount)}px)` }}
                             />
                             {wonGame === true && (<div id="game-result-win">
                                 <p>Congrats, you won!</p>
