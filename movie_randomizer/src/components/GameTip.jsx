@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { FaEye } from "react-icons/fa";
 
-import './PixelGameTip.css'
+import './GameTip.css'
 
-const PixelGameTip = ({tipType = '', text = '', won = null}) => {
+const GameTip = ({tipType = '', text = '', won = null}) => {
     const [showTip, setShowTip] = useState(false)
 
     return (
@@ -17,4 +17,4 @@ const PixelGameTip = ({tipType = '', text = '', won = null}) => {
     )
 }
 
-export default PixelGameTip
+export default GameTip
