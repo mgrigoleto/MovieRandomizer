@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { FaStar } from "react-icons/fa"
-import { imageUrl } from "../api/movies"
+import { imageUrl } from "../../api/movies"
 
 import "./Movie.css"
-import { fetchMovieById } from "../api/movies"
+import { fetchMovieById } from "../../api/movies"
 
 const Movie = () => {
     const { id } = useParams()

@@ -1,11 +1,11 @@
 import { useState, useEffect, use } from "react"
-import MovieCard from "../components/MovieCard"
+import MovieCard from "../../components/MovieCard"
 import { OrbitProgress } from "react-loading-indicators"
 
 import { FaSearch } from "react-icons/fa"
 
 import "./Home.css"
-import { fetchGenres, fetchMoviesBySort, fetchSearchedMovies } from "../api/movies"
+import { fetchGenres, fetchMoviesBySort, fetchSearchedMovies } from "../../api/movies"
 
 const Home = () => {
     const [movies, setMovies] = useState([])

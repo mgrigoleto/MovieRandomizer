@@ -1,13 +1,14 @@
 import { useRef, useEffect, useState } from "react"
-import { fetchGenres, fetchMovieById, fetchRandomMovieList, imageUrl } from "../api/movies"
+import { fetchGenres, fetchMovieById, fetchRandomMovieList, imageUrl } from "../../api/movies"
 import { OrbitProgress } from "react-loading-indicators"
 import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
-import PixelGameTip from "../components/PixelGameTip";
+import GameTip from "../../components/GameTip";
 import { FaSquare } from "react-icons/fa";
 import { animateScroll as scroll } from "react-scroll"
+import SearchSelect from "../../components/SearchSelect";
 
 import "./PixelGame.css"
-import SearchSelect from "../components/SearchSelect";
+import { getRandomAntiCheatMessage } from "../../utils/getRandomAntiCheatMessage";
 
 const PixelGame = () => {
     const [genres, setGenres] = useState([])
@@ -19,9 +20,11 @@ const PixelGame = () => {
     const [selectedMovie, setSelectedMovie] = useState(null)
     const [attempts, setAttempts] = useState([])
     const [posterUrl, setPosterUrl] = useState('/pixel-game-template.png')
+    const [imageClicked, setImageClicked] = useState(false)
 
-    const timerRef = useRef(null);
-    const buttonRef = useRef(null);
+    const timerRef = useRef(null)
+    const imgClickedRef = useRef(null)
+    const buttonRef = useRef(null)
 
     useEffect(() => {
         try {
@@ -157,6 +160,17 @@ const PixelGame = () => {
         }
     }
 
+    const showAntiCheatMessage = () => {
+        setImageClicked(true)
+
+        if (imgClickedRef.current) clearTimeout(imgClickedRef.current)
+
+        imgClickedRef.current = setTimeout(() => {
+            setImageClicked(false)
+            imgClickedRef.current = null;
+        }, 3000)
+    }
+
     return (
         <div className="pixel-game-container container">
             <h2>Selected Genres</h2>
@@ -176,7 +190,10 @@ const PixelGame = () => {
             {movie && (
                 <div id="pixel-game-container">
                     <div id="movie-poster-container">
-                        <div id="poster-wrapper">
+                        <div id="poster-wrapper" onClick={() => showAntiCheatMessage()} onContextMenu={(e) => {
+                            e.preventDefault()
+                            showAntiCheatMessage()
+                        }}>
                             <img
                                 src={posterUrl}
                                 className="blured-img"
@@ -193,6 +210,9 @@ const PixelGame = () => {
                             {wrongAnswer === true && (<div id="game-result-lose">
                                 <p>{inputErrorMsg}</p>
                             </div>)}
+                            {imageClicked && <div id="anti-cheat-message">
+                                <p>{getRandomAntiCheatMessage()}</p>
+                            </div>}
                         </div>
                         <SearchSelect onSelect={setSelectedMovie} />
                         <button className="guess-button selected-genre-box " onClick={async () => await guessMovie()}>Guess</button>
@@ -217,20 +237,20 @@ const PixelGame = () => {
                     </div>
                     <div id="movie-tips-container">
                         <h3 style={{ padding: '0 0 16px 0' }}>Tips:</h3>
-                        {guessesAmount > 0 && <PixelGameTip won={wonGame} tipType={`Release year`} text={`${movie.release_date?.slice(0, 4)}`} />}
-                        {guessesAmount > 1 && <PixelGameTip won={wonGame} tipType={`Rating`} text={`${movie.vote_average?.toFixed(1)}`} />}
-                        {guessesAmount > 2 && <PixelGameTip won={wonGame} tipType={`Budget`} text={`$ ${movie.budget.toLocaleString(undefined, {
+                        {guessesAmount > 0 && <GameTip won={wonGame} tipType={`Release year`} text={`${movie.release_date?.slice(0, 4)}`} />}
+                        {guessesAmount > 1 && <GameTip won={wonGame} tipType={`Rating`} text={`${movie.vote_average?.toFixed(1)}`} />}
+                        {guessesAmount > 2 && <GameTip won={wonGame} tipType={`Budget`} text={`$ ${movie.budget.toLocaleString(undefined, {
                             minimumFractionDigits: 2,
                             maximumFractionDigits: 2,
                         })}`} />}
-                        {guessesAmount > 3 && <PixelGameTip won={wonGame} tipType={`Revenue`} text={`$ ${movie.revenue.toLocaleString(undefined, {
+                        {guessesAmount > 3 && <GameTip won={wonGame} tipType={`Revenue`} text={`$ ${movie.revenue.toLocaleString(undefined, {
                             minimumFractionDigits: 2,
                             maximumFractionDigits: 2,
                         })}`} />}
-                        {guessesAmount > 4 && <PixelGameTip won={wonGame} tipType={`Genres`} text={`${movie.genres.map(genre => genre.name).join(", ")}`} />}
-                        {guessesAmount > 5 && <PixelGameTip won={wonGame} tipType={`Production`} text={`${movie.production_companies.map(production => production.name).join(", ")}`} />}
-                        {guessesAmount > 6 && <PixelGameTip won={wonGame} tipType={`Tagline`} text={`${movie.tagline}`} />}
-                        {guessesAmount > 7 && <PixelGameTip won={wonGame} tipType={`Overview`} text={`${movie.overview}`} />}
+                        {guessesAmount > 4 && <GameTip won={wonGame} tipType={`Genres`} text={`${movie.genres.map(genre => genre.name).join(", ")}`} />}
+                        {guessesAmount > 5 && <GameTip won={wonGame} tipType={`Production`} text={`${movie.production_companies.map(production => production.name).join(", ")}`} />}
+                        {guessesAmount > 6 && <GameTip won={wonGame} tipType={`Tagline`} text={`${movie.tagline}`} />}
+                        {guessesAmount > 7 && <GameTip won={wonGame} tipType={`Overview`} text={`${movie.overview}`} />}
                     </div>
                 </div>
             )}

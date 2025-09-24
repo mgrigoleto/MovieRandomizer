@@ -139,6 +139,7 @@
 
 .blured-img {
     width: 100%;
+    pointer-events: none;
 }
 
 #game-result-win,
@@ -163,6 +164,27 @@
 
 #game-result-lose {
     background-color: rgb(180, 0, 0);
+}
+
+#anti-cheat-message {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    color: black;
+    background-color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px;
+    pointer-events: none;
 }
 
 #attempts-subtitles {
