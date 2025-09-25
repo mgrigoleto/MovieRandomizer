@@ -12,7 +12,7 @@ const MovidleAttempt = ({ movie, attempt, attemptNumber = 1, isLast = true }) =>
     const rating = attempt?.vote_average?.toFixed(1)
 
     const checkYear = () => {
-        if (movie?.release_date === attempt?.release_date) {
+        if (movie?.release_date?.slice(0, 4) === attempt?.release_date?.slice(0, 4)) {
             return 'right-movidle-guess'
         } else {
             return 'wrong-movidle-guess'
