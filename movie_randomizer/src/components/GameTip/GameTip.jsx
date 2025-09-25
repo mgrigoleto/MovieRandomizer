@@ -3,7 +3,7 @@ import { FaEye } from "react-icons/fa";
 
 import './GameTip.css'
 
-const GameTip = ({tipType = '', text = '', won = null}) => {
+const GameTip = ({ tipType = '', text = '', won = null }) => {
     const [showTip, setShowTip] = useState(false)
 
     return (

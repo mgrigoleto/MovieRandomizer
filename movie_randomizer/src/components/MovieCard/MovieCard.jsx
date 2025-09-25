@@ -3,9 +3,9 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import { FaPlus, FaMinus } from "react-icons/fa"
 import { OrbitProgress } from "react-loading-indicators"
-import { getGradeColor } from "../utils/getGradeColor"
-import { fetchSimilarMovies } from "../api/movies"
-import { imageUrl } from "../api/movies"
+import { getGradeColor } from "../../utils/getGradeColor"
+import { fetchSimilarMovies } from "../../api/movies"
+import { imageUrl } from "../../api/movies"
 
 import "./MovieCard.css"
 
