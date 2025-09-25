@@ -28,9 +28,7 @@ const Moviedle = () => {
             fetchRandomMovieList().then(movies => {
                 if (movies.length > 0) {
                     try {
-                        //movies[Math.floor(Math.random() * movies.length)].id
-                        
-                        fetchMovieById(1038392)
+                        fetchMovieById(movies[Math.floor(Math.random() * movies.length)].id)
                             .then(movie => {
                                 setMovie(movie)
                                 setLoading(false)
