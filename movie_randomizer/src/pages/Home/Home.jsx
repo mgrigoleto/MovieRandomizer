@@ -1,5 +1,5 @@
 import { useState, useEffect, use } from "react"
-import MovieCard from "../../components/MovieCard"
+import MovieCard from "../../components/MovieCard/MovieCard"
 import { OrbitProgress } from "react-loading-indicators"
 
 import { FaSearch } from "react-icons/fa"

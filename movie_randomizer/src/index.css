@@ -62,3 +62,7 @@ a {
 ::-webkit-scrollbar-thumb:hover {
     background: #021331;
 }
+
+.small-loading {
+    transform: scale(0.5);
+}

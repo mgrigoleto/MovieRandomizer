@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react"
-import { fetchSearchedMovies } from "../api/movies"
+import { fetchSearchedMovies } from "../../api/movies"
 
 import './SearchSelect.css'
 
@@ -19,11 +19,12 @@ const SearchSelect = ({ onSelect }) => {
     }
 
     const handleInputClick = () => {
+        onSelect(null)
         setSelected(false)
         setQuery('')
     }
 
-    // 300ms debounce to avoid fetching the api everytime the user types
+    // debounce to avoid fetching the api everytime the user types
     useEffect(() => {
         if (selected) return
         const timer = setTimeout(() => setDebouncedQuery(query), 150)

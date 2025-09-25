@@ -12,9 +12,8 @@ const Navbar = () => {
                     <Link to="/"><BiSolidMoviePlay /> NextMovie</Link>
                 </h2>
                 <nav id="games-nav">
-                    <h3>
-                        <Link to="/pixelgame">Pixel Game</Link>
-                    </h3>
+                    <Link to="/pixelgame"><h3>Pixel Game</h3></Link>
+                    <Link to="/moviedle"><h3>Moviedle</h3></Link>
                 </nav>
             </nav>
         </div>

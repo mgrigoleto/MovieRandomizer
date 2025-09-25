@@ -2,10 +2,10 @@ import { useRef, useEffect, useState } from "react"
 import { fetchGenres, fetchMovieById, fetchRandomMovieList, imageUrl } from "../../api/movies"
 import { OrbitProgress } from "react-loading-indicators"
 import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
-import GameTip from "../../components/GameTip";
+import GameTip from "../../components/GameTip/GameTip";
 import { FaSquare } from "react-icons/fa";
 import { animateScroll as scroll } from "react-scroll"
-import SearchSelect from "../../components/SearchSelect";
+import SearchSelect from "../../components/SearchSelect/SearchSelect";
 
 import "./PixelGame.css"
 import { getRandomAntiCheatMessage } from "../../utils/getRandomAntiCheatMessage";
@@ -71,7 +71,6 @@ const PixelGame = () => {
                         fetchMovieById(
                             data[Math.floor(Math.random() * data.length)].id
                         ).then(movie => {
-                            console.log(movie)
                             setMovie(movie)
                             setPosterUrl(`${imageUrl}${movie.poster_path}`)
 
@@ -96,25 +95,15 @@ const PixelGame = () => {
     const guessMovie = async () => {
         if (wonGame) return
 
-        if (!selectedMovie) {
-            setInputErrorMsg('Select a movie.')
-            setWrongAnswer(true)
-            removeErrorMessage()
-            return
-        }
+        const filled = checkFilledInput()
 
-        if (attempts.find(m => m.id === selectedMovie.id)) {
-            setInputErrorMsg("You've already guessed this movie.")
-            setWrongAnswer(true)
-            removeErrorMessage()
-            return
-        }
+        if (!filled) return
 
         if (selectedMovie?.id === movie.id) {
             setWonGame(true)
         } else if (!(selectedMovie?.id === movie.id)) {
             setGuessesAmount(guessesAmount + 1)
-            setInputErrorMsg('Wrong.')
+            setInputErrorMsg('Wrong answer.')
             setWrongAnswer(true)
             removeErrorMessage()
 
@@ -126,6 +115,26 @@ const PixelGame = () => {
         }
 
         await checkIfIsInCollection(selectedMovie)
+    }
+
+    const checkFilledInput = () => {
+
+        if (!selectedMovie) {
+            setInputErrorMsg('Select a movie.')
+            setWrongAnswer(true)
+            removeErrorMessage()
+            return false
+        }
+
+        if (attempts.find(m => m.id === selectedMovie.id)) {
+            setInputErrorMsg("You've already guessed this movie.")
+            setWrongAnswer(true)
+            removeErrorMessage()
+            return false
+        }
+
+        return true
+        
     }
 
     const removeErrorMessage = () => {
@@ -146,7 +155,7 @@ const PixelGame = () => {
                     if (movie.id === a.id) {
                         a.background = 'linear-gradient(90deg, rgb(0, 175, 0)  0%, rgba(0, 0, 0, 1) 100%)'
                     }
-                    else if (movie.belongs_to_collection?.id === m.belongs_to_collection?.id) {
+                    else if (movie.belongs_to_collection?.id && movie.belongs_to_collection?.id === m.belongs_to_collection?.id) {
                         a.background = 'linear-gradient(90deg, rgba(255, 187, 0, 1)  0%, rgba(0, 0, 0, 1) 100%)'
                     }
                     else {
@@ -215,7 +224,7 @@ const PixelGame = () => {
                             </div>}
                         </div>
                         <SearchSelect onSelect={setSelectedMovie} />
-                        <button className="guess-button selected-genre-box " onClick={async () => await guessMovie()}>Guess</button>
+                        <button type="submit" className="guess-button selected-genre-box " onClick={async () => await guessMovie()} >Guess</button>
                     </div>
                     <div id="movie-attempts-container">
                         <div>

@@ -1,0 +1,147 @@
+.moviedle-container {
+    padding: 25px 10%;
+}
+
+#moviedle-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+#moviedle-title button {
+    font-size: 20px;
+    width: 30px;
+    border-radius: 5px;
+    height: 30px;
+    border: 2px solid #0059ff;
+    background-color: #0059ff;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease-in-out;
+}
+
+#moviedle-title button:hover {
+    background-color: #003aa7;
+    border: 2px solid #003aa7;
+}
+
+#moviedle-subtitle {
+    color: #0059ff;
+}
+
+#guess-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 25px 0 15px 0;
+}
+
+#guess-container img {
+    width: 100%;
+    border: 2px solid #003aa7;
+}
+
+#poster-container {
+    width: 50%;
+    max-width: 200px;
+}
+
+#input-guess-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    max-width: 300px;
+    gap: 15px;
+}
+
+.guess-button {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 10px;
+    gap: 10px;
+    border-radius: 5px;
+    background-color: #0059ff;
+    border-bottom: 2px solid #03245e;
+    border-right: 2px solid #03245e;
+    box-shadow: 2px 2px 0 #03245e;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.guess-button:hover {
+    filter: none;
+    background-color: #001c4d;
+    border-bottom: 2px solid #021331;
+    border-right: 2px solid #021331;
+    box-shadow: 2px 2px 0 #021331;
+}
+
+.win-guess-button,
+.win-guess-button:hover {
+    cursor: default;
+    background-color: #009933;
+    border-bottom: 2px solid #005e1f;
+    border-right: 2px solid #005e1f;
+    box-shadow: 2px 2px 0 #005e1f;
+}
+
+#similarities-header {
+    width: 100%;
+    height: 60px;
+    border-bottom: 3px solid white;
+}
+
+#similarities-header tr {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;    
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+.small-moviedle-table-column {
+    width: 10%;
+}
+
+.medium-moviedle-table-column {
+    width: 20%;
+}
+
+.large-moviedle-table-column {
+    width: 25%;
+}
+
+#attempts-container {
+    width: 100%;
+    height: 400px;
+    overflow-y: auto;
+}
+
+#attempts-table, #attempts-table tbody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
